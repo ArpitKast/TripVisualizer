@@ -19,21 +19,6 @@ interface Trip {
 export class TripListComponent {
   startPoint = '';
   endPoint = '';
-//   trips: Trip[] = [];
-// trips = [
-//      { start: 'BLR', end: 'MAA', arrow: false, level: 2 },
-//      { start: 'MAA', end: 'HYD', arrow: true, level: 2 },
-//      { start: 'BLR', end: 'HYD', arrow: false, level: 1 },
-//      { start: 'HYB', end: 'DEL', arrow: false, level: 2 },
-//      { start: 'DEL', end: 'BLR', arrow: false, level: 1 }
-//    ];
-   
-//    trips = [
-//      { start: 'BAN', end: 'CHE', level: 1, arrow: false },
-//      { start: 'CHE', end: 'OOT', level: 1, arrow: false },
-//      { start: 'OOT', end: 'BAN', level: 1, arrow: true },
-//      { start: 'BAN', end: 'BAN', level: 2, arrow: false }
-//    ];
 
 trips = [
      { start: 'BLR', end: 'MAA', level: 2, arrow: false, connected: true, color: '#6a5acd' },
@@ -43,31 +28,6 @@ trips = [
      { start: 'HYB', end: 'DEL', level: 1, arrow: false, connected: false, color: '#6a5acd' },
      { start: 'DEL', end: 'BLR', level: 2, arrow: false, connected: false, color: '#6a5acd' },
    ];
-  addTrip() {
-    const start = this.startPoint.trim().substring(0, 3).toUpperCase();
-    const end = this.endPoint.trim().substring(0, 3).toUpperCase();
-
-    let level = 1;
-    let arrow = false;
-
-    const lastTrip = this.trips[this.trips.length - 1];
-
-    if (lastTrip) {
-      if (lastTrip.end === start) {
-        level = 1;
-        arrow = false;
-      } else if (lastTrip.start === start && lastTrip.end === end) {
-        level = 2;
-      } else {
-        arrow = true;
-      }
-    }
-
-//     this.trips.push({ start, end, level, arrow });
-
-    this.startPoint = '';
-    this.endPoint = '';
-  }
   generateZigzagPath(index: number, level: number): string {
      const x1 = index * 200 + 30;
      const y1 = level === 1 ? 50 : 100;
