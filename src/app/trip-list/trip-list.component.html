@@ -1,0 +1,57 @@
+<div class="trip-list-container">
+     <svg [attr.width]="trips.length * 200" height="200" xmlns="http://www.w3.org/2000/svg">
+       <defs>
+         <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+           <polygon points="0 0, 10 3.5, 0 7" fill="#007bff" />
+         </marker>
+       </defs>
+   
+       <ng-container *ngFor="let trip of trips; let i = index" >
+          <ng-container *ngIf="i < trips.length - 1">
+               
+         <ng-container *ngIf="trip.connected; else curved" >
+           <!-- Straight line with optional arrow -->
+           <line
+             [attr.x1]="i * 200 + 30"
+             [attr.y1]="trip.level === 1 ? 50 : 100"
+             [attr.x2]="(i + 1) * 200"
+             [attr.y2]="trip.level === 1 ? 50 : 100"
+             [attr.stroke]="trip.color"
+             stroke-width="2"
+             [attr.marker-end]="trip.arrow ? 'url(#arrowhead)' : ''"
+           ></line>
+         </ng-container>
+   
+         <ng-template #curved>
+           <!-- Zigzag curve -->
+           <path
+             [attr.d]="generateZigzagPath(i, trip.level)"
+             fill="transparent"
+             [attr.stroke]="trip.color"
+             stroke-width="2"
+           />
+         </ng-template>
+         
+     </ng-container>
+   
+         <!-- Circles at points -->
+         <circle
+           [attr.cx]="i * 200 + 20"
+           [attr.cy]="trip.level === 1 ? 50 : 100"
+           r="5"
+           [attr.fill]="trip.color"
+         ></circle>
+   
+         <!-- Trip label -->
+         <text
+           [attr.x]="i * 200 + 5"
+           [attr.y]="trip.level === 1 ? 80 : 130"
+           font-size="14"
+           [attr.fill]="trip.color"
+         >
+           {{ trip.start }} - {{ trip.end }}
+         </text>
+       </ng-container>
+     </svg>
+   </div>
+   

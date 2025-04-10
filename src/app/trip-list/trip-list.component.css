@@ -1,0 +1,22 @@
+.trip-inputs {
+     margin-bottom: 20px;
+   }
+   
+   .trip-inputs input {
+     margin-right: 10px;
+   }
+   
+   .trip-list-container {
+     width: 100%;
+     height: 200px;
+     border: 1px solid #ccc;
+     margin-top: 20px;
+   }
+   
+
+   :host {
+     display: block;
+     width: 100%;
+     /* overflow-x: auto; */
+   }
+  
